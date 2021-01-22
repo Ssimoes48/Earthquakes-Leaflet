@@ -87,7 +87,7 @@ I used the `css` file to format the appearance of the legend on the webpage.
 
 When you view this map visualization with the earthquake locations and the tectonic plate layer, there is a clear correlation between earthquake location and location of tectonic plates. 
 
-![conclusion](Images/plate_conclusion.PNG) 
+![conclusion](Images/plate_conclusionPNG.PNG) 
 
 ## Resources
 
