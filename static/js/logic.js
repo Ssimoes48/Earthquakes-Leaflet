@@ -10,7 +10,9 @@ d3.json(getUrl, function (data) {
 function createFeatures(earthquakeData) {
 
   function onEachFeature(feature, layer) {
-    layer.bindPopup("<h3>" + feature.properties.place +
+    layer.bindPopup("<h3>" + feature.properties.place + 
+    "<h3><p>" + feature.properties.mag + 
+    "<h3><p>" + feature.geometry.coordinates[2] +
       "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
   }
 
