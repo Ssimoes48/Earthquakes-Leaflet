@@ -8,7 +8,7 @@ Welcome to the United States Geological Survey- USGS for short. To help understa
 ## Table of contents
 * [Technologies](#technologies)
 * [Build Map](#build-map)
-* [Layers](#layers)
+* [Plot Points](#plot-points)
 * [Status](#status)
 * [Resources](#resources)
 * [Contact](#contact)
@@ -24,17 +24,29 @@ Welcome to the United States Geological Survey- USGS for short. To help understa
 
 To build my map, I used [Leaflet](https://leafletjs.com/) and [MapBox](https://docs.mapbox.com/). Within `javascript` , I used `d3.json` to read my data files from the USGS site. I selected coordinates and a zoom level to best display the earthquake data upon loading the web page. 
 
-[map location](Images/myMap.PNG)
+![map location](Images/myMap.PNG)
 
 I then created baseman layers. Each layer has unique enhancements to the view that can help when evaluating the earthquake data. You can view the data in:
 
 * ‘Street View’ – up close shows street other manmade factors
+
+![street](Images/street.PNG)
+
 * ‘Satellite View’ – shows a live view of the earth
+
+![satellite](Images/satellite.PNG)
+
 * ‘Outdoor’ – shows topographical details upon zooming in
 
-[basemap](Images/basemaps.PNG)
+![outdoor](Images/outdoor.PNG)
 
-## Layers 
+![basemap](Images/basemaps.PNG)
+
+## Plot Points 
+
+To plot the earthquake data, I created a `function` that reads the `json` data and plots the longitude and latitude coordinates for each earthquake event. The location is marked with a circle. The size of the circle represents the magnitude of the event and the color represents the depth of the event.
+
+
 
 ## Features
 
@@ -43,6 +55,7 @@ I then created baseman layers. Each layer has unique enhancements to the view th
 ## Resources
 
 [Earthquake USGS](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php)
+
 [Earthquake Json](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson)
 
 [Tectonic Plate Json](https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json)
