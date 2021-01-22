@@ -1,5 +1,5 @@
 var earthquakes = new L.LayerGroup();
-var tech = new L.LayerGroup();
+var tect = new L.LayerGroup();
 
 var getUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
 
@@ -32,12 +32,12 @@ function createFeatures(earthquakeData) {
   createMap(earthquakes);
 }
 
-var techUrl = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
-d3.json(techUrl, function(tData){
+var tectUrl = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
+d3.json(tectUrl, function(tData){
   L.geoJSON(tData,{
 
-  }).addTo(tech)
-  tech.addTo(myMap)
+  }).addTo(tect)
+  tect.addTo(myMap)
 })
 
 function createMap(earthquakes) {
@@ -73,7 +73,7 @@ function createMap(earthquakes) {
 
   var overlayMaps = {
     Earthquakes: earthquakes,
-    tectonicplates: tech
+    tectonicplates: tect
   };
 
   var myMap = L.map("map", {

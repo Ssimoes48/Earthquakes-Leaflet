@@ -3,7 +3,6 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
@@ -13,13 +12,12 @@
 
 ## General info
 
-## Screenshots
-![Example screenshot](./img/screenshot.png)
-
 ## Technologies
-* Tech 1 - version 1.0
-* Tech 2 - version 2.0
-* Tech 3 - version 3.0
+* Leaflet 
+* Mapbox
+* D3
+* Javascript
+* HTML
 
 ## Setup
 
@@ -30,6 +28,11 @@
 ## Status
 
 ## Resources
+
+[Earthquake Json](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson)
+[Tectonic Plate Json](https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json)
+[Leaflet Documentation ](https://leafletjs.com/)
+[MapBox Documentation ](https://docs.mapbox.com/)
 
 ## Contact
 
