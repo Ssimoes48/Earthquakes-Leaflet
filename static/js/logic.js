@@ -20,7 +20,6 @@ function createFeatures(earthquakeData) {
       return L.circleMarker(latlng, {
         radius: feature.properties.mag * 4,
         fillColor: chooseColor(feature.geometry.coordinates[2]),
-        // color: "#000",
         weight: 1,
         opacity: 1,
         fillOpacity: 1
@@ -78,9 +77,9 @@ function createMap(earthquakes) {
 
   var myMap = L.map("map", {
     center: [
-      37.09, -95.71
+      48.27, -118.33
     ],
-    zoom: 5,
+    zoom: 4,
     layers: [streetmap, earthquakes]
   });
 
