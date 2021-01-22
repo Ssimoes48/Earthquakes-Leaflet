@@ -3,22 +3,17 @@ var tech = new L.LayerGroup();
 
 var getUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson";
 
-// Perform a GET request to the query URL
 d3.json(getUrl, function (data) {
   createFeatures(data.features);
 });
 
 function createFeatures(earthquakeData) {
 
-  // Define a function we want to run once for each feature in the features array
-  // Give each feature a popup describing the place and time of the earthquake
   function onEachFeature(feature, layer) {
     layer.bindPopup("<h3>" + feature.properties.place +
       "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
   }
 
-  // Create a GeoJSON layer containing the features array on the earthquakeData object
-  // Run the onEachFeature function once for each piece of data in the array
   earthquakes = L.geoJSON(earthquakeData, {
     onEachFeature: onEachFeature,
     pointToLayer: function (feature, latlng) {
@@ -33,24 +28,19 @@ function createFeatures(earthquakeData) {
     }
   });
 
-  
-
-  // Sending our earthquakes layer to the createMap function
   createMap(earthquakes);
-
 }
 
 var techUrl = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
 d3.json(techUrl, function(tData){
   L.geoJSON(tData,{
-    
+
   }).addTo(tech)
   tech.addTo(myMap)
 })
 
 function createMap(earthquakes) {
 
-  // Define streetmap and darkmap layers
   var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
     tileSize: 512,
@@ -75,21 +65,17 @@ function createMap(earthquakes) {
   });
 
 
-
-  // Define a baseMaps object to hold our base layers
   var baseMaps = {
     "Street Map": streetmap,
     "Satellite": satellite,
     "Outdoor": outdoor
   };
 
-  // Create overlay object to hold our overlay layer
   var overlayMaps = {
     Earthquakes: earthquakes,
     tectonicplates: tech
   };
 
-  // Create our map, giving it the streetmap and earthquakes layers to display on load
   var myMap = L.map("map", {
     center: [
       37.09, -95.71
@@ -98,10 +84,6 @@ function createMap(earthquakes) {
     layers: [streetmap, earthquakes]
   });
 
-
-  // Create a layer control
-  // Pass in our baseMaps and overlayMaps
-  // Add the layer control to the map
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(myMap);
@@ -109,13 +91,13 @@ function createMap(earthquakes) {
   var legend = L.control({ position: 'bottomright' });
   legend.onAdd = function (myMap) {
     var div = L.DomUtil.create('div', 'info legend'),
-      grades = [-10, 10, 30, 50, 70, 90],
+      magnitude = [-10, 10, 30, 50, 70, 90],
       labels = [];
-    // loop through density intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < grades.length; i++) {
+
+    for (var i = 0; i < magnitude.length; i++) {
       div.innerHTML +=
-        '<i style="background:' + chooseColor(grades[i] + 1) + '"></i> ' +
-        grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+        '<i style="background:' + chooseColor(magnitude[i] + 1) + '"></i> ' +
+        magnitude[i] + (magnitude[i + 1] ? '&ndash;' + magnitude[i + 1] + '<br>' : '+');
     }
     return div;
   };
@@ -123,19 +105,13 @@ function createMap(earthquakes) {
   legend.addTo(myMap);
 }
 
-
 var plateData = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
 
-// d3.json(plateData, function (data) {
-//   // Once we get a response, send the data.features object to the createFeatures function
-//   createFeatures(data.features);
-// });
-
 function chooseColor(d) {
-  return d > 90 ? '#1951' :
-    d > 70 ? '#1952' :
-      d > 50 ? '#E31A1C' :
-        d > 30 ? '#1960' :
-          d > 10 ? '#1966' :
-            '#FFEDA0';
+  return d > 90 ? '#a50026' :
+    d > 70 ? '#eb5d3c' :
+      d > 50 ? '#fdc474' :
+        d > 30 ? '#f5f8ac' :
+          d > 10 ? '#a9da70' :
+            '#38a557';
 }
