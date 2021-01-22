@@ -10,10 +10,10 @@ d3.json(getUrl, function (data) {
 function createFeatures(earthquakeData) {
 
   function onEachFeature(feature, layer) {
-    layer.bindPopup("<h3>" + feature.properties.place + 
-    "<h3><p>" + feature.properties.mag + 
-    "<h3><p>" + feature.geometry.coordinates[2] +
-      "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
+    layer.bindPopup("<h3> Location: " + feature.properties.place + 
+    "<h3> Magnitude: " + feature.properties.mag + 
+    "<h3> Depth: " + feature.geometry.coordinates[2] +
+      "</h3><hr><p> Data: " + new Date(feature.properties.time) + "</p>");
   }
 
   earthquakes = L.geoJSON(earthquakeData, {
@@ -65,7 +65,6 @@ function createMap(earthquakes) {
     accessToken: API_KEY
   });
 
-
   var baseMaps = {
     "Street Map": streetmap,
     "Satellite": satellite,
@@ -105,8 +104,6 @@ function createMap(earthquakes) {
 
   legend.addTo(myMap);
 }
-
-var plateData = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json";
 
 function chooseColor(d) {
   return d > 90 ? '#a50026' :
