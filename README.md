@@ -7,6 +7,7 @@ Welcome to the United States Geological Survey or USGS. To understand data on na
 
 ![Tect plates](Images/tech_plates.PNG)
 
+
 ## Table of contents
 * [Technologies](#technologies)
 * [Build Map](#build-map)
